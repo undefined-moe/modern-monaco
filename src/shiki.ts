@@ -94,7 +94,7 @@ function loadTMTheme(src: string | URL, cdn = "https://esm.sh") {
 /** Load a TextMate grammar from the given source. */
 function loadTMGrammar(src: string | URL, cdn = "https://esm.sh") {
   if (typeof src === "string") {
-    const g = grammars.find(g => g.name === src);
+    const g = grammars.find(g => g.name === (src === "plaintext" ? "text" : src));
     if (g) {
       const url = new URL(`/tm-grammars@${tmGrammarsVersion}/grammars/${g.name}.json`, cdn);
       return cache.fetch(url).then((res) => res.json());
